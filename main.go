@@ -19,9 +19,10 @@ func output_excel() {
 	if err != nil {
 		log.Fatalf("%v", err)
 	}
-	var branches [22]string
+	length := len(rows)
+	branches := make([]string, length-1)
 
-	for i := 0; i < 22; i++ {
+	for i := 0; i < length-1; i++ {
 		ID := rows[i+1][0]
 		if rune(ID[4]) == 'A' {
 			if ID[5] == 49 {
@@ -71,8 +72,8 @@ func output_excel() {
 			}
 		}
 	}
-	var emails [22]string
-	for i := 0; i < 22; i++ {
+	emails := make([]string, length-1)
+	for i := 0; i < length-1; i++ {
 		ID := rows[i+1][0]
 		var ID_no string = ID[8:12]
 		email := fmt.Sprintf("f2022%s@pilani.bits-pilani.ac.in", ID_no)
@@ -112,12 +113,13 @@ func student_details() {
 		email  string
 	}
 
-	var students [22]student
 	rows, err := f.GetRows("Sheet1")
 	if err != nil {
 		log.Fatalf("%v", err)
 	}
-	for i := 0; i < 22; i++ {
+	length := len(rows)
+	students := make([]student, length-1)
+	for i := 0; i < length-1; i++ {
 		id := rows[i+1][0]
 		name := rows[i+1][1]
 		branch := rows[i+1][2]
@@ -131,7 +133,7 @@ func student_details() {
 		students[i] = Student
 	}
 
-	for i := 0; i < 22; i++ {
+	for i := 0; i < length-1; i++ {
 		fmt.Println(students[i])
 	}
 }
