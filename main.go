@@ -7,6 +7,56 @@ import (
 	"github.com/xuri/excelize/v2"
 )
 
+func single_degree(num int, i int, ID string, branches []string) {
+	if ID[num] == 49 {
+		branch := "Chemical"
+		branches[i] = branches[i] + branch
+	} else if ID[num] == 50 {
+		branch := "Civil"
+		branches[i] = branches[i] + branch
+	} else if ID[num] == 51 {
+		branch := "EEE"
+		branches[i] = branches[i] + branch
+	} else if ID[num] == 52 {
+		branch := "Mechanical"
+		branches[i] = branches[i] + branch
+	} else if ID[num] == 53 {
+		branch := "B.Pharma"
+		branches[i] = branches[i] + branch
+	} else if ID[num] == 55 {
+		branch := "Computer Science"
+		branches[i] = branches[i] + branch
+	} else if ID[num] == 56 {
+		branch := "ENI"
+		branches[i] = branches[i] + branch
+	} else if ID[num] == 65 {
+		branch := "ECE"
+		branches[i] = branches[i] + branch
+	} else if ID[num] == 66 {
+		branch := "Manufacturing"
+		branches[i] = branches[i] + branch
+	}
+}
+
+func dual_degree(num int, i int, ID string, branches []string) {
+	if ID[num] == 49 {
+		branch := "Msc Biology"
+		branches[i] = branch
+	} else if ID[num] == 50 {
+		branch := "Msc Chemistry"
+		branches[i] = branch
+	} else if ID[num] == 51 {
+		branch := "Msc Economics"
+		branches[i] = branch
+	} else if ID[num] == 52 {
+		branch := "Msc Mathematics"
+		branches[i] = branch
+	} else if ID[num] == 53 {
+		branch := "Msc Physics"
+		branches[i] = branch
+	}
+}
+
 func output_excel() {
 	xlsxFilePath := "data.xlsx"
 
@@ -24,51 +74,13 @@ func output_excel() {
 
 	for i := 0; i < length-1; i++ {
 		ID := rows[i+1][0]
-		if rune(ID[4]) == 'A' {
-			if ID[5] == 49 {
-				branch := "Chemical"
-				branches[i] = branch
-			} else if ID[5] == 50 {
-				branch := "Civil"
-				branches[i] = branch
-			} else if ID[5] == 51 {
-				branch := "EEE"
-				branches[i] = branch
-			} else if ID[5] == 52 {
-				branch := "Mechanical"
-				branches[i] = branch
-			} else if ID[5] == 53 {
-				branch := "B.Pharma"
-				branches[i] = branch
-			} else if ID[5] == 55 {
-				branch := "Computer Science"
-				branches[i] = branch
-			} else if ID[5] == 56 {
-				branch := "ENI"
-				branches[i] = branch
-			} else if ID[5] == 65 {
-				branch := "ECE"
-				branches[i] = branch
-			} else if ID[5] == 66 {
-				branch := "Manufacturing"
-				branches[i] = branch
-			}
+		if ID[4] == 65 {
+			single_degree(5, i, ID, branches)
 		} else {
-			if ID[5] == 49 {
-				branch := "Msc Biology"
-				branches[i] = branch
-			} else if ID[5] == 50 {
-				branch := "Msc Chemistry"
-				branches[i] = branch
-			} else if ID[5] == 51 {
-				branch := "Msc Economics"
-				branches[i] = branch
-			} else if ID[5] == 52 {
-				branch := "Msc Mathematics"
-				branches[i] = branch
-			} else if ID[5] == 53 {
-				branch := "Msc Physics"
-				branches[i] = branch
+			dual_degree(5, i, ID, branches)
+			if ID[6] == 65 {
+				branches[i] = branches[i] + " and "
+				single_degree(7, i, ID, branches)
 			}
 		}
 	}
