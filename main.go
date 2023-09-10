@@ -8,53 +8,33 @@ import (
 )
 
 func single_degree(num int, i int, ID string, branches []string) {
-	if ID[num] == 49 {
-		branch := "Chemical"
-		branches[i] = branches[i] + branch
-	} else if ID[num] == 50 {
-		branch := "Civil"
-		branches[i] = branches[i] + branch
-	} else if ID[num] == 51 {
-		branch := "EEE"
-		branches[i] = branches[i] + branch
-	} else if ID[num] == 52 {
-		branch := "Mechanical"
-		branches[i] = branches[i] + branch
-	} else if ID[num] == 53 {
-		branch := "B.Pharma"
-		branches[i] = branches[i] + branch
-	} else if ID[num] == 55 {
-		branch := "Computer Science"
-		branches[i] = branches[i] + branch
-	} else if ID[num] == 56 {
-		branch := "ENI"
-		branches[i] = branches[i] + branch
-	} else if ID[num] == 65 {
-		branch := "ECE"
-		branches[i] = branches[i] + branch
-	} else if ID[num] == 66 {
-		branch := "Manufacturing"
-		branches[i] = branches[i] + branch
+	singleDegreeMap := map[int]string{
+		49: "Chemical",
+		50: "Civil",
+		51: "EEE",
+		52: "Mechanical",
+		53: "B.Pharma",
+		55: "Computer Science",
+		56: "ENI",
+		65: "ECE",
+		66: "Manufacturing",
 	}
+	key := int(ID[num])
+	branch := singleDegreeMap[key]
+	branches[i] = branches[i] + branch
 }
 
 func dual_degree(num int, i int, ID string, branches []string) {
-	if ID[num] == 49 {
-		branch := "Msc Biology"
-		branches[i] = branch
-	} else if ID[num] == 50 {
-		branch := "Msc Chemistry"
-		branches[i] = branch
-	} else if ID[num] == 51 {
-		branch := "Msc Economics"
-		branches[i] = branch
-	} else if ID[num] == 52 {
-		branch := "Msc Mathematics"
-		branches[i] = branch
-	} else if ID[num] == 53 {
-		branch := "Msc Physics"
-		branches[i] = branch
+	dualDegreeMap := map[int]string{
+		49: "Msc Biology",
+		50: "Msc Chemistry",
+		51: "Msc Economics",
+		52: "Msc Mathematics",
+		53: "Msc Physics",
 	}
+	key := int(ID[num])
+	branch := dualDegreeMap[key]
+	branches[i] = branch
 }
 
 func output_excel() {
